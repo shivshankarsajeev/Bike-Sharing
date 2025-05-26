@@ -20,7 +20,7 @@ def get_requirements(file_path: str) -> List[str]:
 
 
 setup(
-    name="bike-sharing",
+    name="ml-bike-sharing",
     version="0.0.1",
     author="Shiv Shankar",
     author_email="shivshankarsajeev@gmail.com",
