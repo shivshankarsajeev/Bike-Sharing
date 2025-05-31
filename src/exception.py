@@ -12,7 +12,7 @@ def error_message_details(error, error_details: sys):
     return error_message
 
 
-class CustomExcepiton(Exception):
+class CustomException(Exception):
     def __init__(self, error_message, error_details: sys):
         super().__init__(error_message)
         self.error_message = error_message_details(
@@ -28,4 +28,4 @@ if __name__ == "__main__":
         a = 1 / 0
     except Exception as e:
         logging.info("Divide by zero")
-        raise CustomExcepiton(e, sys)
+        raise CustomException(e, sys)

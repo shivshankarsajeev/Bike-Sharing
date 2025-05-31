@@ -29,5 +29,4 @@ dev = [
     "xgboost>=3.0.1",
 ]
 
-[tool.uv.sources]
-bike-sharing = { workspace = true }
+

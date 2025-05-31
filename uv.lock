@@ -69,7 +69,7 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "bike-sharing", virtual = "." },
+    { name = "bike-sharing" },
     { name = "catboost", specifier = ">=1.2.8" },
     { name = "cycler", specifier = ">=0.12.1" },
     { name = "matplotlib", specifier = ">=3.10.3" },
