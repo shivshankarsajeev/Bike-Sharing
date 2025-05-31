@@ -67,7 +67,7 @@ class DataTransformation:
             ]
             numerical_cols = ["temp", "atemp", "hum", "windspeed"]
 
-            num_pipeline = Pipeline(steps=[("scaler", StandardScaler())])
+            # num_pipeline = Pipeline(steps=[("scaler", StandardScaler())])
 
             nominal_pipeline = Pipeline(
                 steps=[("onehot", OneHotEncoder(sparse_output=False, drop="first"))]
@@ -77,14 +77,13 @@ class DataTransformation:
                 steps=[("ordinal", OrdinalEncoder(categories=ordinal_categories))]
             )
 
-            num_pipeline = Pipeline(steps=[("scaler", StandardScaler())])
-
             preprocessor = ColumnTransformer(
                 transformers=[
-                    ("num", num_pipeline, numerical_cols),
+                    # ("num", num_pipeline, numerical_cols),
                     ("nominal", nominal_pipeline, nominal_cols),
                     ("ordinal", ordinal_pipeline, ordinal_cols),
-                ]
+                ],
+                remainder="passthrough",
             )
 
             return preprocessor
@@ -104,11 +103,19 @@ class DataTransformation:
             preprocessing_obj = self.get_data_transformer_object()
 
             target_column_name = "cnt"
+            train_test_drop = [
+                "Unnamed: 0",
+                "instant",
+                "dteday",
+                "casual",
+                "registered",
+                "cnt",
+            ]
 
-            input_feature_train_df = train_df.drop(columns=[target_column_name], axis=1)
+            input_feature_train_df = train_df.drop(columns=train_test_drop, axis=1)
             target_feature_train_df = train_df[target_column_name]
 
-            input_feature_test_df = test_df.drop(columns=[target_column_name], axis=1)
+            input_feature_test_df = test_df.drop(columns=train_test_drop, axis=1)
             target_feature_test_df = test_df[target_column_name]
 
             logging.info(
