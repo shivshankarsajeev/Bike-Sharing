@@ -10,3 +10,4 @@ wheels/
 .venv
 Notebook/Data/hour_new.csv
 z_code_test.py
+artifacts
